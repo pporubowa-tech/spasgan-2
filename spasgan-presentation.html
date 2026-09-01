@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Спазган® — что меняем в тексте страницы и зачем</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
+<style>
+  :root{
+    --navy:#2A2E9E; --navy-deep:#1C1F73; --tint:#EEF0FF; --line:#E4E6F2;
+    --red:#E2231A; --green:#18A07A; --gold:#F5B12B;
+    --ink:#1A1A2E; --muted:#6B6B7B; --bg:#F6F7FC; --wrap:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+  h1,h2,h3{line-height:1.15;letter-spacing:-.4px}
+  a{color:var(--navy)}
+
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{font-weight:800;font-size:15px}
+  .brand span{color:var(--red)}
+  .topbar .meta{font-size:12px;color:var(--muted)}
+
+  .cover{background:radial-gradient(1100px 560px at 80% -10%, rgba(226,35,26,.14), transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff}
+  .cover .wrap{padding-top:78px;padding-bottom:74px}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 13px;border-radius:100px;margin-bottom:20px}
+  .cover h1{font-size:42px;font-weight:800;margin:0 0 16px;max-width:820px}
+  .cover h1 .red{color:#ff8a85}
+  .cover p.lead{font-size:18px;color:rgba(255,255,255,.85);max-width:700px;margin:0 0 30px}
+  .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:820px}
+  .goal{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px}
+  .goal b{display:block;font-size:16px;margin-bottom:4px}
+  .goal span{font-size:13px;color:rgba(255,255,255,.78)}
+
+  .slide{padding:64px 0;border-bottom:1px solid var(--line)}
+  .slide:nth-child(even){background:var(--bg)}
+  .num{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+  .slide h2{font-size:29px;font-weight:800;margin:0 0 6px}
+  .slide .sect-sub{font-size:15px;color:var(--muted);margin:0 0 26px;max-width:780px}
+
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  .col{border-radius:16px;padding:22px;border:1px solid var(--line);background:#fff}
+  .col--before{border-left:4px solid #c9ccd8}
+  .col--after{border-left:4px solid var(--green);background:linear-gradient(180deg,#f1faf6 0,#fff 120px)}
+  .col__h{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+  .col--before .col__h{color:#8a8d9c}
+  .col--after .col__h{color:var(--green)}
+  .col ul{margin:0;padding:0;list-style:none}
+  .col li{position:relative;padding:7px 0 7px 24px;font-size:14.5px;line-height:1.5}
+  .col li::before{position:absolute;left:0;top:7px;font-weight:800}
+  .col--before li::before{content:"—";color:#b3b6c2}
+  .col--after li::before{content:"✓";color:var(--green)}
+
+  .why{margin-top:18px;background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:16px 20px;font-size:14.5px}
+  .why b{color:var(--navy)}
+  .why.red{background:#fff5f5;border-color:#f3d2d0}
+  .why.red b{color:var(--red)}
+
+  /* таблица метрик */
+  .metrics{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:6px}
+  .metrics th,.metrics td{padding:13px 18px;text-align:left;font-size:14.5px;border-bottom:1px solid var(--line)}
+  .metrics th{background:var(--tint);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--navy)}
+  .metrics tr:last-child td{border-bottom:none}
+  .metrics td b{color:var(--ink)}
+  .down{color:var(--green);font-weight:800}
+  .metrics-note{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .pill{display:inline-block;font-size:13px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:100px;padding:7px 14px;color:var(--ink)}
+  .pill b{color:var(--red)}
+
+  .sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .sum-card{border:1px solid var(--line);border-radius:16px;padding:24px;background:#fff}
+  .sum-card h3{font-size:18px;margin:0 0 12px}
+  .sum-card ul{margin:0;padding-left:18px}
+  .sum-card li{margin-bottom:7px;font-size:14.5px}
+  .todo b{color:var(--red)}
+
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.75);padding:34px 0;font-size:13px;text-align:center}
+
+  @media (max-width:820px){
+    .cover h1{font-size:32px}
+    .goals,.cmp,.sum-grid{grid-template-columns:1fr}
+    .slide h2{font-size:24px}
+    .metrics th,.metrics td{padding:10px 12px;font-size:13px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span class="brand">Спазган<span>®</span> · доработка текста страницы</span><span class="meta">Было → Стало → Зачем</span></div></div>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="wrap">
+    <span class="eyebrow">Предложение по доработке · страница Спазган</span>
+    <h1>Что меняем в тексте страницы Спазган и <span class="red">зачем</span></h1>
+    <p class="lead">Работа над текстом уже свёрстанного прототипа: снижение переспама по ключевым словам, живой язык вместо канцелярита, закрытие пробелов в мобильной версии. Дизайн и структура блоков не менялись — только содержание.</p>
+    <div class="goals">
+      <div class="goal"><b>Снять переспам</b><span>Плотность «боль» была близка к порогу, за которым поиск видит переоптимизацию</span></div>
+      <div class="goal"><b>Mobile-first</b><span>Google индексирует мобильную версию — а в ней не хватало текста</span></div>
+      <div class="goal"><b>Безопасность (YMYL)</b><span>Лекарственная страница без слова о противопоказаниях — заметный пробел</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 1 Плотность «боль» -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">01 · Ключевое слово «боль»</span>
+    <h2>Снизили плотность, не потеряв смысл</h2>
+    <p class="sect-sub">Слово «боль» встречалось в тексте почти каждым восемнадцатым словом. Это не запрещено, но близко к порогу, за которым поиск начинает считать текст переоптимизированным, а человек — однообразным.</p>
+
+    <table class="metrics">
+      <tr><th>Версия</th><th>Было</th><th>Стало</th><th>Изменение</th></tr>
+      <tr><td><b>Десктоп</b></td><td>68 вхождений · 5,57%</td><td>59 вхождений · 4,80%</td><td class="down">−0,77 п.п.</td></tr>
+      <tr><td><b>Мобильная</b></td><td>59 вхождений · 5,62%</td><td>51 вхождение · 4,78%</td><td class="down">−0,84 п.п.</td></tr>
+    </table>
+    <p class="metrics-note">Измерено по видимому тексту страницы, без учёта кода и служебной разметки.</p>
+
+    <div class="cmp" style="margin-top:22px">
+      <div class="col col--before"><div class="col__h">Было</div><ul>
+        <li>«…три компонента снимают и <b>боль</b>, и мышечное напряжение»</li>
+        <li>«Снимает <b>боль</b> и температуру»</li>
+        <li>«Разбираемся, откуда берётся <b>боль</b>»</li>
+        <li>«…при постоянной сильной <b>боли</b> требует консультации»</li>
+      </ul></div>
+      <div class="col col--after"><div class="col__h">Стало</div><ul>
+        <li>«…снимают и мышечное напряжение, и саму <b>болезненность</b>»</li>
+        <li>«Устраняет <b>болевой синдром</b> и снижает температуру»</li>
+        <li>«Разбираемся, откуда берётся <b>дискомфорт</b>»</li>
+        <li>Оставлено как есть — совпадение с запросом здесь полезно</li>
+      </ul></div>
+    </div>
+    <div class="why"><b>Зачем:</b> синонимы («болезненность», «болевой синдром», «болевые ощущения», «дискомфорт», «недомогание») сохраняют тему для поиска, но убирают монотонность. Там, где точное слово работает на релевантность — в заголовках H1/H2, в анкорах ссылок, в вопросах FAQ — мы его сознательно не трогали.</div>
+  </div>
+</section>
+
+<!-- 2 Живой язык -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">02 · Живой язык</span>
+    <h2>Глагол вместо существительного — «болит» вместо «боль»</h2>
+    <p class="sect-sub">Люди в поиске пишут не только «головная боль», но и «если болит голова», «болит зуб». Глагольные формы закрывают этот разговорный пласт запросов и звучат человечнее.</p>
+    <div class="cmp">
+      <div class="col col--before"><div class="col__h">Было</div><ul>
+        <li>«Спазган снимает головную боль, вызванную спазмом сосудов…»</li>
+        <li>«Снимает острую зубную боль как временную меру…»</li>
+        <li>«Приступообразная боль в пояснице или боку…»</li>
+        <li>«Снимает схваткообразную боль в животе…»</li>
+      </ul></div>
+      <div class="col col--after"><div class="col__h">Стало</div><ul>
+        <li>«Спазган помогает, если <b>голова болит</b> из-за спазма сосудов…»</li>
+        <li>«Помогает, если <b>сильно болит зуб</b>, как временная мера…»</li>
+        <li>«Если <b>приступообразно болит</b> в пояснице или боку…»</li>
+        <li>«Помогает, если <b>схваткообразно болит живот</b>…»</li>
+      </ul></div>
+    </div>
+    <div class="why"><b>Зачем:</b> названия карточек («Головная боль», «Зубная боль») мы оставили без изменений — по ним пользователь ищет глазами свой симптом. Поменяли только пояснения внутри, где важнее живая речь.</div>
+  </div>
+</section>
+
+<!-- 3 Бренд -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">03 · Название бренда</span>
+    <h2>Убрали повторы «Спазган» там, где они лишние</h2>
+    <div class="cmp">
+      <div class="col col--before"><div class="col__h">Было</div><ul>
+        <li>Заголовок «При какой боли помогает <b>Спазган</b>» → сразу следом «<b>Спазган</b> применяют при…»</li>
+        <li>Заголовок «<b>Спазган</b> — обезболивающий препарат…» → следом «…что важно знать о <b>Спазган</b>»</li>
+        <li>В FAQ бренд назван и в вопросе, и в первом слове ответа</li>
+      </ul></div>
+      <div class="col col--after"><div class="col__h">Стало</div><ul>
+        <li>«<b>Препарат</b> применяют при спастической боли и коликах…»</li>
+        <li>«…вот что важно знать <b>о препарате</b>»</li>
+        <li>«Обычный анальгетик снимает только симптом. <b>Он</b> дополнительно расслабляет…»</li>
+      </ul></div>
+    </div>
+    <table class="metrics" style="margin-top:20px">
+      <tr><th>Версия</th><th>Было</th><th>Стало</th><th>Изменение</th></tr>
+      <tr><td><b>Десктоп</b></td><td>45 вхождений · 3,69%</td><td>42 вхождения · 3,42%</td><td class="down">−0,27 п.п.</td></tr>
+      <tr><td><b>Мобильная</b></td><td>41 вхождение · 3,91%</td><td>38 вхождений · 3,56%</td><td class="down">−0,35 п.п.</td></tr>
+    </table>
+    <div class="why"><b>Зачем:</b> бренд на своей же странице неизбежно частотен, и это нормально. Резали только там, где название стояло в двух соседних предложениях подряд. В заголовках, названиях вкладок и подвале оставили — там оно работает на узнаваемость и на брендовые запросы.</div>
+  </div>
+</section>
+
+<!-- 4 Мобильная версия -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">04 · Мобильная версия</span>
+    <h2>Главная находка: в мобильной версии не хватало текста</h2>
+    <p class="sect-sub">Google индексирует сайт по мобильной версии (mobile-first). Всё, чего нет на мобильной, поиск фактически не видит — даже если на десктопе это есть.</p>
+    <div class="cmp">
+      <div class="col col--before"><div class="col__h">Было на мобильной</div><ul>
+        <li>У 10 карточек показаний — только иконка и название, без пояснений (на десктопе пояснения открывались по наведению)</li>
+        <li>В промо-баннере нет обязательной юридической строки</li>
+        <li>Нет подписи «20 таблеток» на упаковке</li>
+        <li>В табах линейки — только названия продуктов, без пояснений</li>
+        <li>Мелкие расхождения: «3 компон.» вместо «3 компонента», «10 мин» вместо «10 мин чтения»</li>
+      </ul></div>
+      <div class="col col--after"><div class="col__h">Стало</div><ul>
+        <li>Пояснения ко всем 10 карточкам показаний перенесены и видны сразу, без наведения</li>
+        <li>Добавлена строка «ООО «Вокхард БИО (Р)» · РУ ЛП-003270 · Реклама»</li>
+        <li>Подпись «20 таблеток» на упаковке добавлена</li>
+        <li>Подзаголовки в табах: «Боль + спазм · 3 компонента» и т.д.</li>
+        <li>Формулировки сверены с десктопом один в один</li>
+      </ul></div>
+    </div>
+    <div class="why red"><b>Почему это важнее всего остального:</b> без пояснений к показаниям мобильная версия теряла около десяти абзацев объясняющего текста — того самого, который отвечает на вопрос «а моя ли это боль». Для mobile-first индексации это прямая потеря содержания.</div>
+  </div>
+</section>
+
+<!-- 5 Противопоказания -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">05 · Безопасность</span>
+    <h2>Добавили вопрос о противопоказаниях в FAQ</h2>
+    <div class="cmp">
+      <div class="col col--before"><div class="col__h">Было</div><ul>
+        <li>О противопоказаниях — только обязательная строка-дисклеймер внизу экрана</li>
+        <li>Ни одного конкретного слова о том, кому препарат не подходит</li>
+      </ul></div>
+      <div class="col col--after"><div class="col__h">Стало</div><ul>
+        <li>Отдельный вопрос-ответ «Какие противопоказания у Спазгана?» — с перечнем основных и отсылкой к инструкции</li>
+        <li>Добавлен в обе версии — и десктопную, и мобильную</li>
+      </ul></div>
+    </div>
+    <div class="why red"><b>Требует сверки:</b> перечень собран по общей фармакологии действующих веществ (метамизол натрия + питофенон + фенпивериния бромид), а не выгружен из официальной инструкции под РУ ЛП-003270. Перед публикацией на боевом сайте формулировку обязан утвердить медицинский или юридический отдел — для рекламы лекарств точность здесь юридически значима.</div>
+  </div>
+</section>
+
+<!-- 6 Что не трогали -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">06 · Границы работы</span>
+    <h2>Что сознательно не меняли</h2>
+    <p class="sect-sub">Не всякое повторение — переспам. Часть вхождений работает на результат, и трогать их было бы вредно.</p>
+    <div class="pillrow">
+      <span class="pill">Заголовки <b>H1 и H2</b> — ключ в заголовке даёт релевантность</span>
+      <span class="pill">Анкоры ссылок в подвале — «При головной боли», «При менструальной боли»</span>
+      <span class="pill">Пары «вопрос → ответ» в FAQ — повтор слова из вопроса нормален и помогает попасть в AI-ответы</span>
+      <span class="pill">Названия карточек показаний — по ним ищут свой симптом глазами</span>
+      <span class="pill">Формулировки с «сильная боль» — по прямому решению заказчика</span>
+    </div>
+    <div class="why"><b>Зачем:</b> задача была не «сделать цифру меньше любой ценой», а убрать монотонность там, где она мешает, сохранив всё, что работает на трафик.</div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<section class="slide">
+  <div class="wrap">
+    <span class="num">Итог</span>
+    <h2>Что сделано и что нужно для запуска</h2>
+    <div class="sum-grid">
+      <div class="sum-card">
+        <h3>Что получаем</h3>
+        <ul>
+          <li>Плотность «боль» снижена с 5,6% до 4,8% — ушли от порога переоптимизации</li>
+          <li>Разговорные формы «болит» закрывают дополнительный пласт запросов</li>
+          <li>Мобильная версия догнала десктопную по содержанию — критично для mobile-first</li>
+          <li>Появился ответ о противопоказаниях — сигнал качества для медицинской темы</li>
+          <li>Дизайн и структура не тронуты — правки только текстовые</li>
+        </ul>
+      </div>
+      <div class="sum-card todo">
+        <h3>Нужно заполнить и сверить</h3>
+        <ul>
+          <li><b>Противопоказания</b> — сверить с официальной инструкцией (РУ ЛП-003270)</li>
+          <li><b>ФИО врача-рецензента</b> и дата проверки материала</li>
+          <li>Ссылки на инструкцию, согласие на ПД, политику конфиденциальности</li>
+          <li>Реальный виджет карты аптек вместо плейсхолдера</li>
+          <li>Фото упаковки в фирменном стиле вместо CSS-мокапа</li>
+        </ul>
+      </div>
+    </div>
+    <div class="why" style="margin-top:20px"><b>Отдельно:</b> все цифры плотности в этой презентации измерены по реальному тексту страницы, а не оценены на глаз. Данных Search Console и GA4 по этой странице нет — о позициях и трафике судить пока не по чему.</div>
+  </div>
+</section>
+
+<footer>Спазган® · Предложение по доработке текста страницы · Было → Стало → Зачем</footer>
+
+</body>
+</html>

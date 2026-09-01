@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Спазган® от боли и спазмов — материалы по доработке страницы</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
+<style>
+  :root{
+    --navy:#2A2E9E; --navy-deep:#1C1F73; --red:#E2231A; --gold:#F5B12B;
+    --ink:#1A1A2E; --muted:#6B6B7B; --line:#E4E6F2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);
+    background:radial-gradient(1100px 560px at 82% -10%, rgba(226,35,26,.16), transparent 60%),linear-gradient(160deg,#2A2E9E 0%,#1C1F73 100%);
+    display:flex;flex-direction:column;align-items:center;padding:56px 20px 48px}
+  .head{max-width:1000px;width:100%;text-align:center;color:#fff}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:100px;margin-bottom:20px}
+  h1{font-size:36px;font-weight:800;letter-spacing:-.6px;margin:0 0 12px}
+  h1 span{color:#ff8a85}
+  .lead{font-size:16px;color:rgba(255,255,255,.82);max-width:660px;margin:0 auto 40px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;width:100%}
+  .card{display:flex;flex-direction:column;background:#fff;border-radius:18px;padding:26px 24px;text-decoration:none;color:inherit;
+    box-shadow:0 20px 50px rgba(28,31,115,.30);transition:transform .15s, box-shadow .15s;border-top:4px solid var(--navy)}
+  .card:hover{transform:translateY(-4px);box-shadow:0 28px 60px rgba(28,31,115,.42)}
+  .card--mobile{border-top-color:var(--red)}
+  .card--pres{border-top-color:#18A07A}
+  .ic{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:#fff}
+  .card--proto .ic{background:linear-gradient(135deg,#2A2E9E,#3A8FE0)}
+  .card--mobile .ic{background:linear-gradient(135deg,#E2231A,#F5B12B)}
+  .card--pres .ic{background:linear-gradient(135deg,#18A07A,#4FD0A8)}
+  .ic svg{width:26px;height:26px}
+  .card h2{font-size:19px;font-weight:800;margin:0 0 6px}
+  .card p{font-size:14px;color:var(--muted);line-height:1.55;margin:0 0 20px;flex:1}
+  .open{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--navy)}
+  .card--mobile .open{color:var(--red)}
+  .card--pres .open{color:#12805F}
+  .related{max-width:1000px;width:100%;margin-top:26px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .related__txt{color:rgba(255,255,255,.85);font-size:14px;line-height:1.5}
+  .related__txt b{color:#fff;display:block;font-size:16px;margin-bottom:3px}
+  .related__link{flex-shrink:0;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:800;font-size:14px;padding:12px 22px;border-radius:100px;white-space:nowrap}
+  .note{margin-top:34px;max-width:1000px;width:100%;color:rgba(255,255,255,.6);font-size:12.5px;text-align:center;line-height:1.6}
+  @media (max-width:820px){ .grid{grid-template-columns:1fr} h1{font-size:28px} }
+</style>
+</head>
+<body>
+  <div class="head">
+    <span class="eyebrow">Спазган® · боль и спазм</span>
+    <h1>Страница Спазган от боли и спазмов — <span>материалы</span></h1>
+    <p class="lead">Прототип посадочной страницы под SEO / GEO и конверсию, мобильная версия и презентация с объяснением правок. Выберите, что открыть.</p>
+  </div>
+
+  <div class="grid">
+    <a class="card card--proto" href="spasgan-desktop.html">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h2>Прототип (десктоп)</h2>
+      <p>Страница целиком: формула из трёх компонентов, показания, сравнение с обычным анальгетиком, дозировка, доверие, FAQ и «Где купить».</p>
+      <span class="open">Открыть макет →</span>
+    </a>
+
+    <a class="card card--mobile" href="spasgan-mobile.html">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+      <h2>Мобильная версия</h2>
+      <p>Тот же прототип в рамке телефона (mobile-first): одна колонка, липкая кнопка «Где купить» и плашка противопоказаний.</p>
+      <span class="open">Открыть на телефоне →</span>
+    </a>
+
+    <a class="card card--pres" href="spasgan-presentation.html">
+      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v11H3z"/><path d="M12 15v4M8 21h8"/></svg></div>
+      <h2>Презентация доработок</h2>
+      <p>Что и зачем поменяли в тексте: плотность ключевых слов, синонимы, синхронизация десктопа и мобильной версии, новые блоки.</p>
+      <span class="open">Открыть презентацию →</span>
+    </a>
+  </div>
+
+  <div class="related">
+    <div class="related__txt">
+      <b>Другие препараты линейки</b>
+      Спазган НЕО — отдельные комплекты материалов под головную и менструальную боль.
+    </div>
+    <a class="related__link" href="https://spasgan-neo-menstrual-pain.vercel.app/" target="_blank" rel="noopener">Открыть →</a>
+  </div>
+
+  <p class="note">Все файлы — статичные HTML, открываются двойным кликом, без сборки.</p>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Обезболивающие таблетки Спазган® — мобильная версия</title>
+<meta name="description" content="Спазган от боли и спазма: три компонента снимают боль и расслабляют спазмированную мышцу. Мобильная версия прототипа.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="favicon.ico" sizes="any">
+<style>
+  :root {
+    --navy: #2A2E9E;
+    --navy-deep: #1C1F73;
+    --navy-soft: #3A3FB5;
+    --red: #E2231A;
+    --red-dark: #C31B14;
+    --ink: #1A1A2E;
+    --muted: #6B6B7B;
+    --line: #E6E6ED;
+    --gold: #F5B12B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: #ECECEF;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 40px 20px 80px;
+  }
+
+  .stage-label {
+    max-width: 390px;
+    margin: 0 auto 18px;
+    text-align: center;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #888;
+  }
+  .stage-label b {
+    color: var(--ink); background: #fff;
+    padding: 4px 10px; border-radius: 4px;
+    margin-left: 6px; border: 1px solid #d8d8dc;
+    letter-spacing: 0.5px;
+  }
+
+  .device {
+    max-width: 390px;
+    margin: 0 auto;
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .device-screen {
+    background: #fff;
+    border-radius: 34px;
+    overflow: hidden;
+    position: relative;
+    min-height: 780px;
+  }
+
+  /* Статусбар */
+  .statusbar {
+    height: 44px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px 0 28px;
+    font-size: 14px; font-weight: 600; color: #fff;
+    position: relative;
+  }
+  .statusbar-notch {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 28px; background: #1a1a1a; border-radius: 16px;
+  }
+  .statusbar-icons { display: flex; gap: 5px; align-items: center; font-size: 12px; }
+  .battery {
+    width: 24px; height: 11px; border: 1px solid #fff; border-radius: 3px;
+    position: relative; padding: 1px;
+  }
+  .battery::after {
+    content: ""; position: absolute; right: -3px; top: 3px;
+    width: 2px; height: 5px; background: #fff; border-radius: 1px;
+  }
+  .battery-fill { width: 80%; height: 100%; background: #fff; border-radius: 1px; }
+
+  /* Промо */
+  .promo {
+    background: var(--red); color: #fff;
+    padding: 8px 14px;
+    font-size: 11px; font-weight: 600;
+  }
+  .promo-row { display: flex; align-items: center; gap: 8px; }
+  .promo-badge {
+    background: #fff; color: var(--red); font-weight: 800;
+    padding: 2px 7px; border-radius: 3px; font-size: 10px;
+    text-transform: uppercase; flex-shrink: 0;
+  }
+  .promo span.t { line-height: 1.25; }
+  .promo b { font-weight: 800; }
+  .promo-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 4px; }
+  .promo-shop { color: #fff; text-decoration: underline; font-weight: 700; font-size: 10px; flex-shrink: 0; }
+  .promo-legal { font-size: 8px; opacity: .8; font-weight: 500; line-height: 1.3; }
+
+  .disclaimer {
+    background: var(--navy-deep); color: rgba(255,255,255,0.6);
+    text-align: center; font-size: 8px; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 5px 8px; font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* Шапка */
+  .header {
+    background: var(--navy);
+    padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .home-btn {
+    width: 36px; height: 36px; border-radius: 9px;
+    background: rgba(255,255,255,0.14);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; padding: 0; border: none; cursor: pointer;
+  }
+  .home-btn svg { width: 18px; height: 18px; }
+  .logo-m { color: #fff; font-weight: 900; font-size: 19px; letter-spacing: 0.5px; }
+  .logo-m sup { font-size: 0.4em; font-weight: 600; }
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+  .icon-btn {
+    width: 36px; height: 36px; border-radius: 9px;
+    background: rgba(255,255,255,0.14); border: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; cursor: pointer; padding: 0;
+  }
+  .icon-btn svg { width: 18px; height: 18px; }
+
+  /* Таб-бар линейки (горизонтальный скролл) */
+  .lineup {
+    background: var(--navy);
+    padding: 0 12px 0;
+    display: flex; gap: 8px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .lineup::-webkit-scrollbar { display: none; }
+  .lineup-item {
+    flex-shrink: 0;
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px;
+    border-radius: 10px 10px 0 0;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+  }
+  .lineup-item.active { background: #fff; color: var(--ink); }
+  .lineup-pill {
+    width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 11px; color: #fff;
+  }
+  .lineup-pill.c1 { background: linear-gradient(135deg, #E2231A, #F5B12B); }
+  .lineup-pill.c2 { background: linear-gradient(135deg, #2A2E9E, #3A8FE0); }
+  .lineup-pill.c3 { background: linear-gradient(135deg, #18A07A, #4FD0A8); }
+  .lineup-name { font-weight: 800; font-size: 13px; white-space: nowrap; }
+  .lineup-desc { font-size: 9px; opacity: .75; margin-top: 1px; white-space: nowrap; }
+  .lineup-item.active .lineup-desc { color: var(--muted); opacity: 1; }
+
+  /* HERO */
+  .hero {
+    background:
+      radial-gradient(420px 260px at 80% 0%, rgba(255,255,255,0.12), transparent 60%),
+      linear-gradient(165deg, var(--navy) 0%, var(--navy-deep) 100%);
+    color: #fff;
+    padding: 16px 18px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; right: -80px; top: -60px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(226,35,26,0.22) 0%, transparent 62%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; }
+
+  .breadcrumbs {
+    font-size: 11px; color: rgba(255,255,255,0.6);
+    margin-bottom: 12px;
+  }
+  .breadcrumbs span { color: #fff; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 8px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 4px 9px; border-radius: 100px;
+    margin-bottom: 11px;
+  }
+  .eyebrow .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); }
+
+  h1 {
+    font-size: 26px; line-height: 1.05;
+    margin: 0 0 12px; font-weight: 800; letter-spacing: -0.7px;
+  }
+  h1 .accent { color: #fff; }
+  h1 sup { font-size: 0.32em; font-weight: 600; top: -1.3em; }
+
+  .symptoms { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+  .symptom {
+    font-size: 12px; font-weight: 700;
+    padding: 6px 11px; border-radius: 7px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+  .symptom.hot { background: var(--red); border-color: var(--red); }
+  .sub { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.5; margin: 0 0 16px; }
+
+  /* Упаковка */
+  .pack {
+    aspect-ratio: 16/10;
+    border-radius: 14px;
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(255,255,255,0.16), transparent 55%),
+      linear-gradient(135deg, #3A3FB5 0%, #1C1F73 100%);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.35);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .pack::after {
+    content: "рендер упаковки СПАЗГАН · 20 таб";
+    position: absolute; inset: auto 0 10px; text-align: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 9px; letter-spacing: 0.8px; text-transform: uppercase;
+  }
+  .pack-mock {
+    width: 52%; aspect-ratio: 16/9; border-radius: 7px;
+    background: linear-gradient(135deg, #fff 0%, #f0f0f5 100%);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transform: rotate(-6deg);
+  }
+  .pack-mock .brand { color: var(--navy); font-weight: 900; font-size: 17px; letter-spacing: -0.4px; }
+  .pack-mock .stripe { width: 68%; height: 5px; background: var(--red); border-radius: 3px; margin-top: 5px; }
+  .pack-mock .small { color: var(--muted); font-size: 7px; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .price-ribbon {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--red); color: #fff;
+    padding: 6px 12px; border-radius: 100px;
+    font-size: 11px; font-weight: 700;
+    box-shadow: 0 6px 16px rgba(226,35,26,0.5);
+    z-index: 3; display: flex; align-items: baseline; gap: 5px;
+  }
+  .price-ribbon b { font-size: 14px; font-weight: 900; }
+
+  /* USP-иконки */
+  .usps {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    margin-bottom: 16px;
+  }
+  .usp {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px; padding: 10px 8px; text-align: center;
+  }
+  .usp-icon { width: 22px; height: 22px; color: #fff; margin: 0 auto 6px; }
+  .usp-icon svg { width: 100%; height: 100%; }
+  .usp-val { font-size: 13px; font-weight: 800; line-height: 1.1; }
+  .usp-lbl { font-size: 9px; color: rgba(255,255,255,0.7); margin-top: 3px; line-height: 1.25; }
+
+  /* CTAs */
+  .ctas { display: flex; flex-direction: column; gap: 9px; }
+  .btn {
+    padding: 14px 18px; border-radius: 10px;
+    font-size: 14px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.4px;
+    cursor: pointer; border: none; width: 100%;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-primary { background: var(--gold); color: var(--ink); box-shadow: 0 6px 18px rgba(245,177,43,0.45); }
+  .btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); }
+  .hero-trust { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.75); }
+  .hero-trust span::before { content: "✓"; color: var(--red); font-weight: 800; margin-right: 6px; background: #fff; border-radius: 50%; padding: 0 4px; font-size: 9px; }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* Sticky CTA снизу */
+  .sticky-cta {
+    position: sticky; bottom: 0;
+    background: #fff; border-top: 1px solid var(--line);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    display: flex; gap: 8px; align-items: center;
+    box-shadow: 0 -6px 16px rgba(0,0,0,0.06); z-index: 10;
+  }
+  .sticky-cta .btn { padding: 12px 14px; font-size: 13px; flex: 1; }
+  .sticky-cta .btn-primary { box-shadow: none; }
+  .sticky-cta .btn-call {
+    background: #fff; border: 1.5px solid var(--navy); color: var(--navy);
+    flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border-radius: 50%;
+  }
+  .sticky-cta .btn-call svg { width: 18px; height: 18px; }
+
+  .home-indicator {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 130px; height: 4px; background: var(--ink);
+    border-radius: 2px; opacity: 0.3; z-index: 20;
+  }
+
+  /* Аннотация */
+  .changes-box { max-width: 390px; margin: 28px auto 0; }
+  .changes {
+    background: #FFF8E1; border-left: 3px solid var(--gold);
+    padding: 14px 16px; border-radius: 4px;
+    font-size: 12px; line-height: 1.55; color: #4a3e1f;
+  }
+  .changes b.h {
+    color: #9a7b1a; text-transform: uppercase; font-size: 10px;
+    letter-spacing: 1.2px; display: block; margin-bottom: 6px;
+  }
+  .changes ul { margin: 0; padding-left: 16px; }
+  .changes li { margin-bottom: 5px; }
+  .changes li b { color: var(--ink); }
+  .placeholder { background: #FFE082; color: #6b4a14; padding: 0 4px; border-radius: 3px; font-weight: 700; }
+
+  /* ============ Продолжение страницы ============ */
+  .continuation-note {
+    max-width: 390px; margin: 24px auto 16px; text-align: center;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #888;
+  }
+  .continuation-note .arrow { display: block; font-size: 16px; color: var(--navy); margin-bottom: 6px; }
+
+  .page-continuation {
+    max-width: 390px; margin: 0 auto;
+    background: #fff; border-radius: 20px; border: 1px solid var(--line);
+    overflow: hidden; box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+  }
+
+  .m-sec { padding: 26px 18px; }
+  .m-sec.band { background: #F4F4F8; }
+  .m-sec.navy { background: linear-gradient(165deg, var(--navy) 0%, var(--navy-deep) 100%); color: #fff; }
+  .m-sec-head { text-align: center; margin-bottom: 20px; }
+  .m-sec-tag {
+    display: inline-block; background: #fff; color: var(--navy);
+    font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+    font-size: 9px; padding: 4px 10px; border-radius: 100px; border: 1px solid var(--line);
+    margin-bottom: 10px;
+  }
+  .m-sec.navy .m-sec-tag { background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.2); }
+  .m-sec-title { font-size: 19px; font-weight: 800; letter-spacing: -0.3px; margin: 0 0 6px; line-height: 1.15; }
+  .m-sec-sub { font-size: 12px; color: var(--muted); margin: 0; line-height: 1.5; }
+  .m-sec.navy .m-sec-sub { color: rgba(255,255,255,0.78); }
+  .m-sec-title .red { color: var(--red); }
+
+  /* 1. Формула */
+  .m-formula { display: flex; flex-direction: column; gap: 10px; }
+  .m-formula-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: flex; gap: 12px; }
+  .m-formula-num {
+    width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+    background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 13px;
+  }
+  .m-formula-name { font-size: 15px; font-weight: 800; margin: 0; }
+  .m-formula-role { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--red); margin: 2px 0 6px; }
+  .m-formula-desc { font-size: 12px; color: #555; line-height: 1.45; margin: 0; }
+  .m-formula-result {
+    margin-top: 12px; background: var(--navy); color: #fff; border-radius: 12px; padding: 16px;
+  }
+  .m-formula-result .big { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .m-formula-result .big .red { color: #FF8A85; }
+  .m-formula-result .txt { font-size: 12px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+
+  /* 2. Показания */
+  .m-ind { display: flex; flex-direction: column; gap: 8px; }
+  .m-ind-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .m-ind-row { display: flex; align-items: center; gap: 12px; }
+  .m-ind-ic { width: 32px; height: 32px; flex-shrink: 0; color: var(--navy); background: #EEF0FF; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .m-ind-ic svg { width: 18px; height: 18px; }
+  .m-ind-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .m-ind-sub { font-size: 11px; color: var(--muted); line-height: 1.45; margin-left: 44px; }
+  .m-ind-explain { font-size: 11px; color: #555; line-height: 1.5; margin-top: 4px; margin-left: 44px; }
+  .m-ind-hint { text-align: center; font-size: 11px; color: var(--muted); margin: -6px 0 4px; }
+  .m-sec.navy .m-ind-hint { color: rgba(255,255,255,0.7); }
+
+  /* 3. Сравнение */
+  .m-cmp { display: flex; flex-direction: column; gap: 12px; }
+  .m-cmp-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .m-cmp-card.good { border: 2px solid var(--navy); box-shadow: 0 10px 24px rgba(42,46,158,0.14); }
+  .m-cmp-badge { padding: 10px 14px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+  .m-cmp-badge.good { background: var(--navy); }
+  .m-cmp-badge.bad { background: #8A8A99; }
+  .m-cmp-body { padding: 14px 16px 16px; }
+  .m-cmp-h { font-size: 14px; font-weight: 800; margin: 0 0 10px; }
+  .m-cmp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+  .m-cmp-list li { font-size: 12px; line-height: 1.45; display: flex; gap: 8px; color: #333; }
+  .m-cmp-list li::before { flex-shrink: 0; font-weight: 900; width: 12px; }
+  .m-cmp-card.good .m-cmp-list li::before { content: "✓"; color: var(--navy); }
+  .m-cmp-card.bad .m-cmp-list li::before { content: "✕"; color: #B0727A; }
+
+  /* 4. Дозировка */
+  .m-dose { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .m-dose-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 12px; text-align: center; }
+  .m-dose-val { font-size: 22px; font-weight: 800; color: var(--navy); line-height: 1; }
+  .m-dose-val .u { font-size: 11px; color: var(--muted); font-weight: 700; }
+  .m-dose-lbl { font-size: 11px; color: #555; margin-top: 6px; line-height: 1.35; }
+  .m-dose-note {
+    margin-top: 12px; background: #FFF8E1; border-left: 3px solid var(--gold);
+    padding: 12px 14px; border-radius: 4px; font-size: 11px; line-height: 1.55; color: #4a3e1f; text-align: center;
+  }
+
+  /* 5. Доверие */
+  .m-trust { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .m-trust-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 12px; text-align: center; }
+  .m-trust-ic { width: 36px; height: 36px; margin: 0 auto 8px; border-radius: 10px; background: #EEF0FF; color: var(--navy); display: flex; align-items: center; justify-content: center; }
+  .m-trust-ic svg { width: 19px; height: 19px; }
+  .m-trust-val { font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.1; }
+  .m-trust-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+  .m-expert { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; position: relative; overflow: hidden; }
+  .m-expert::before { content: ""; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; background: var(--navy); }
+  .m-expert-quote p { font-size: 13px; line-height: 1.55; color: var(--ink); margin: 0; font-weight: 500; }
+  .m-expert-author { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .m-expert-avatar { width: 40px; height: 40px; border-radius: 50%; background: #EEF0FF; color: var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .m-expert-avatar svg { width: 20px; height: 20px; }
+  .m-expert-meta { flex: 1; min-width: 140px; }
+  .m-expert-name { font-size: 13px; font-weight: 800; color: var(--ink); }
+  .m-expert-role { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .m-expert-link { font-size: 11px; font-weight: 700; color: var(--navy); text-decoration: none; display: inline-block; margin-top: 4px; }
+  .m-expert-checked { font-size: 10px; color: var(--muted); line-height: 1.5; width: 100%; margin-top: 4px; }
+  .m-expert-checked b { color: var(--ink); }
+
+  /* 6. Формы выпуска */
+  .m-forms { display: flex; flex-direction: column; gap: 10px; }
+  .m-form-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; align-items: center; gap: 14px; }
+  .m-form-pack {
+    width: 64px; height: 48px; flex-shrink: 0; border-radius: 8px;
+    background: linear-gradient(135deg, #3A3FB5 0%, #1C1F73 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 900; font-size: 10px;
+  }
+  .m-form-count { font-size: 15px; font-weight: 800; }
+  .m-form-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* 7. Линейка */
+  .m-line { display: flex; flex-direction: column; gap: 10px; }
+  .m-line-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .m-line-card.current { border: 2px solid var(--navy); }
+  .m-line-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .m-line-pill { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; color: #fff; }
+  .m-line-pill.c1 { background: linear-gradient(135deg, #E2231A, #F5B12B); }
+  .m-line-pill.c2 { background: linear-gradient(135deg, #2A2E9E, #3A8FE0); }
+  .m-line-pill.c3 { background: linear-gradient(135deg, #18A07A, #4FD0A8); }
+  .m-line-name { font-size: 15px; font-weight: 800; }
+  .m-line-cur { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: var(--navy); }
+  .m-line-desc { font-size: 12px; color: #555; line-height: 1.45; margin: 0 0 10px; }
+  .m-line-link { color: var(--navy); font-weight: 700; font-size: 13px; text-decoration: none; }
+
+  /* 8. Статьи */
+  .m-art { display: flex; flex-direction: column; gap: 12px; }
+  .m-art-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .m-art-img { height: 120px; background: linear-gradient(135deg, #E8E9FB 0%, #D7D9F5 100%); position: relative; }
+  .m-art-img::after { content: attr(data-label); position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--navy); opacity: .5; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+  .m-art-body { padding: 12px 14px 14px; }
+  .m-art-meta { font-size: 10px; color: var(--muted); margin-bottom: 6px; display: flex; gap: 10px; }
+  .m-art-title { font-size: 14px; font-weight: 700; line-height: 1.35; margin: 0; }
+
+  /* 9. FAQ */
+  .m-faq-item { border-bottom: 1px solid var(--line); }
+  .m-faq-q { padding: 14px 2px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; line-height: 1.35; }
+  .m-faq-q::-webkit-details-marker { display: none; }
+  .m-faq-q::after { content: "+"; font-size: 20px; font-weight: 400; color: var(--navy); flex-shrink: 0; transition: transform .2s; }
+  details[open] .m-faq-q::after { transform: rotate(45deg); }
+  .m-faq-a { padding: 0 2px 16px; font-size: 12px; line-height: 1.6; color: #444; }
+
+  /* Подвал */
+  .m-footer { background: var(--navy-deep); color: rgba(255,255,255,0.72); padding: 28px 18px 18px; }
+  .m-footer-brand { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+  .m-footer-legal { color: rgba(255,255,255,0.5); font-size: 11px; line-height: 1.6; margin: 0 0 14px; }
+  .m-footer-legal a { color: rgba(255,255,255,0.8); text-decoration: none; }
+  .m-footer-col { margin-bottom: 16px; }
+  .m-footer-h { display: block; color: #fff; font-weight: 800; font-size: 13px; text-decoration: none; margin-bottom: 4px; }
+  .m-footer-tag { color: rgba(255,255,255,0.5); font-size: 11px; margin-bottom: 6px; }
+  .m-footer-col a:not(.m-footer-h) { display: block; color: rgba(255,255,255,0.72); text-decoration: none; font-size: 12px; padding: 3px 0; }
+  .m-footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); margin-top: 4px; padding-top: 14px; font-size: 11px; color: rgba(255,255,255,0.5); }
+  .m-footer-bottom a { color: rgba(255,255,255,0.6); text-decoration: none; display: inline-block; margin: 0 10px 8px 0; }
+
+  /* Медицинская предосторожность */
+  .m-big-disclaimer { background: #F9F9F9; border-top: 1px solid var(--line); padding: 12px 16px; text-align: center; }
+  .m-big-disclaimer p { margin: 0; color: rgba(42,46,158,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.35; }
+
+  /* 10. Где купить */
+  .m-shop-map {
+    position: relative; height: 190px; border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--line);
+    background:
+      repeating-linear-gradient(0deg, transparent 0px, transparent 28px, rgba(42,46,158,0.06) 28px, rgba(42,46,158,0.06) 29px),
+      repeating-linear-gradient(90deg, transparent 0px, transparent 28px, rgba(42,46,158,0.06) 28px, rgba(42,46,158,0.06) 29px),
+      #EEF0F8;
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px;
+  }
+  .m-shop-map__overlay {
+    background: rgba(255,255,255,0.94); border: 1px solid rgba(42,46,158,0.18); border-radius: 12px;
+    padding: 16px 18px; max-width: 280px; box-shadow: 0 10px 26px rgba(42,46,158,0.12);
+  }
+  .m-shop-map__pin {
+    width: 38px; height: 38px; margin: 0 auto 10px; border-radius: 50%;
+    background: rgba(42,46,158,0.08); color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .m-shop-map__pin svg { width: 19px; height: 19px; }
+  .m-shop-map__title { font-size: 13px; font-weight: 800; margin-bottom: 4px; color: var(--ink); }
+  .m-shop-map__text { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .m-shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+  .m-shop-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px; display: flex; flex-direction: column; gap: 6px;
+    text-decoration: none; color: inherit;
+  }
+  .m-shop-name { font-weight: 800; font-size: 12px; color: var(--ink); }
+  .m-shop-btn {
+    margin-top: 2px; text-align: center; background: var(--gold); color: var(--ink);
+    border-radius: 100px; padding: 6px 10px; font-size: 10px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage-label">Спазган · Первый экран · <b>iPhone · 390px</b></div>
+
+<div class="device">
+  <div class="device-screen">
+
+    <div class="statusbar">
+      <span>9:41</span>
+      <div class="statusbar-notch"></div>
+      <div class="statusbar-icons">
+        <span>●●●●</span>
+        <span>5G</span>
+        <span class="battery"><span class="battery-fill"></span></span>
+      </div>
+    </div>
+
+    <!-- Промо -->
+    <div class="promo">
+      <div class="promo-row">
+        <span class="promo-badge">Скидка до 20%</span>
+        <span class="t">Заказывайте <b>Спазган НЕО</b> на apteka.ru · с 01.06 до 30.06.2026</span>
+      </div>
+      <div class="promo-bottom">
+        <a class="promo-shop">Перейти →</a>
+        <span class="promo-legal">ООО «Вокхард БИО (Р)» · РУ ЛП-003270 · Реклама</span>
+      </div>
+    </div>
+    <div class="disclaimer">Имеются противопоказания, необходимо проконсультироваться со специалистом</div>
+
+    <!-- Шапка -->
+    <div class="header">
+      <button class="home-btn" aria-label="На главную">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+      </button>
+      <div class="logo-m">СПАЗГАН<sup>®</sup></div>
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Позвонить">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Таб-бар линейки -->
+    <div class="lineup">
+      <div class="lineup-item active">
+        <div class="lineup-pill c1">С</div>
+        <div>
+          <div class="lineup-name">Спазган®</div>
+          <div class="lineup-desc">Боль + спазм · 3 компонента</div>
+        </div>
+      </div>
+      <div class="lineup-item">
+        <div class="lineup-pill c2">Н</div>
+        <div>
+          <div class="lineup-name">Спазган НЕО</div>
+          <div class="lineup-desc">Тройное действие · боль/спазм/жар</div>
+        </div>
+      </div>
+      <div class="lineup-item">
+        <div class="lineup-pill c3">Г</div>
+        <div>
+          <div class="lineup-name">Спазгель</div>
+          <div class="lineup-desc">Местное обезболивание</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="breadcrumbs">Главная / <span>Спазган®</span></div>
+
+        <span class="eyebrow"><span class="dot"></span>Обезболивающее и спазмолитическое средство</span>
+
+        <h1>Обезболивающие таблетки Спазган<sup>®</sup> — <span class="accent">Эксперт против боли и спазма</span></h1>
+
+        <div class="symptoms">
+          <span class="symptom hot">Спазм</span>
+          <span class="symptom">Колики</span>
+          <span class="symptom">Боль</span>
+          <span class="symptom">Невралгия</span>
+        </div>
+
+        <p class="sub">В отличие от обычных анальгетиков, Спазган воздействует на <b>источник боли — спазм</b>: три компонента снимают и мышечное напряжение, и саму болезненность.</p>
+
+        <div class="pack">
+          <div class="price-ribbon">от <b>110 ₽</b></div>
+          <div class="pack-mock">
+            <div class="brand">СПАЗГАН</div>
+            <div class="stripe"></div>
+            <div class="small">20 таблеток</div>
+          </div>
+        </div>
+
+        <div class="usps">
+          <div class="usp">
+            <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div>
+            <div class="usp-val">20–40 мин</div>
+            <div class="usp-lbl">начинает действовать</div>
+          </div>
+          <div class="usp">
+            <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg></div>
+            <div class="usp-val">3 компонента</div>
+            <div class="usp-lbl">боль + спазм</div>
+          </div>
+          <div class="usp">
+            <div class="usp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8-8 11-4.5-3-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="usp-val">25 лет</div>
+            <div class="usp-lbl">опыт применения</div>
+          </div>
+        </div>
+
+        <div class="ctas">
+          <button class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+            Где купить
+          </button>
+          <button class="btn btn-ghost">Инструкция →</button>
+        </div>
+
+        <div class="hero-trust">
+          <span>Безрецептурный отпуск</span>
+          <span>20 / 40 / 100 таблеток</span>
+          <span>Качество по доступной цене</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+      <button class="btn btn-call" aria-label="Позвонить">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </button>
+      <button class="btn btn-primary">Где купить</button>
+    </div>
+
+    <div class="home-indicator"></div>
+
+  </div>
+</div>
+
+<div class="continuation-note">
+  <span class="arrow">↓</span>
+  Продолжение страницы при прокрутке
+</div>
+
+<div class="page-continuation">
+
+  <!-- 1. Формула -->
+  <section class="m-sec">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Как работает</span>
+      <h2 class="m-sec-title">Три компонента против <span class="red">боли и спазма</span></h2>
+      <p class="m-sec-sub">Обычный анальгетик гасит только боль. Спазган снимает и болезненные ощущения, и спазм одновременно: сильное спазмолитическое действие расслабляет спазмированную мышцу, устраняя их источник.</p>
+    </div>
+    <div class="m-formula">
+      <div class="m-formula-card">
+        <div class="m-formula-num">1</div>
+        <div>
+          <h3 class="m-formula-name">Метамизол натрия</h3>
+          <div class="m-formula-role">обезболивает</div>
+          <p class="m-formula-desc">Блокирует передачу болевого сигнала — снижает боль и температуру.</p>
+        </div>
+      </div>
+      <div class="m-formula-card">
+        <div class="m-formula-num">2</div>
+        <div>
+          <h3 class="m-formula-name">Питофенон</h3>
+          <div class="m-formula-role">снимает спазм</div>
+          <p class="m-formula-desc">Расслабляет гладкую мускулатуру внутренних органов — убирает причину спастической боли.</p>
+        </div>
+      </div>
+      <div class="m-formula-card">
+        <div class="m-formula-num">3</div>
+        <div>
+          <h3 class="m-formula-name">Фенпивериния бромид</h3>
+          <div class="m-formula-role">усиливает спазмолитик</div>
+          <p class="m-formula-desc">Дополнительно расслабляет мускулатуру, усиливая действие питофенона.</p>
+        </div>
+      </div>
+    </div>
+    <div class="m-formula-result">
+      <div class="big">Боль <span class="red">−</span> Спазм</div>
+      <div class="txt">Поэтому Спазган эффективен там, где обычное обезболивающее бессильно — при коликах и спастической боли.</div>
+    </div>
+  </section>
+
+  <!-- 2. Показания -->
+  <section class="m-sec navy">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Показания</span>
+      <h2 class="m-sec-title">При какой боли помогает Спазган</h2>
+      <p class="m-sec-sub">Препарат применяют при спастической боли и коликах, а также при широком спектре болевых ощущений лёгкой и умеренной выраженности. Полный перечень показаний — в инструкции по применению.</p>
+    </div>
+    <p class="m-ind-hint">Коротко о каждом виде боли — под названием</p>
+    <div class="m-ind">
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 9h.01M16 9h.01M8 15a4 4 0 0 1 8 0"/></svg></div><div class="m-ind-name">Головная боль</div></div>
+        <div class="m-ind-sub">Головная боль напряжения · спазмолитического характера</div>
+        <div class="m-ind-explain">Спазган помогает, если голова болит из-за спазма сосудов и мышечного напряжения, — за счёт сочетания обезболивающего и спазмолитического компонентов.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 0 6 3 6 7 0 5-2 13-3 13s-1-4-3-4-2 4-3 4-3-8-3-13c0-4 2-7 6-7z"/></svg></div><div class="m-ind-name">Зубная боль</div></div>
+        <div class="m-ind-sub">Острая зубная и челюстно-лицевая боль</div>
+        <div class="m-ind-explain">Помогает, если сильно болит зуб, как временная мера до визита к стоматологу — не заменяет лечение зуба.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div><div class="m-ind-name">Менструальная боль</div></div>
+        <div class="m-ind-sub">Болезненные менструации (дисменорея)</div>
+        <div class="m-ind-explain">Схваткообразная боль внизу живота в дни менструации связана со спазмом мышц матки — Спазган расслабляет мускулатуру и снимает болезненные ощущения одновременно.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6a4 4 0 0 0 8 0V6M6 6h4M14 6h4"/></svg></div><div class="m-ind-name">Суставная боль</div></div>
+        <div class="m-ind-sub">Артриты · бурситы · остеохондроз</div>
+        <div class="m-ind-explain">Уменьшает болезненность и скованность в суставах и спине при воспалении, артрите и остеохондрозе.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h3l2-5 4 10 2-5h3"/></svg></div><div class="m-ind-name">Невралгия</div></div>
+        <div class="m-ind-sub">Тройничного, межрёберного, затылочного нерва · ишиалгия</div>
+        <div class="m-ind-explain">Снимает острую простреливающую боль по ходу нерва — в лице, рёбрах или пояснице.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a7 7 0 0 1 7 7c0 4-3 6-3 9a4 4 0 0 1-8 0c0-3-3-5-3-9a7 7 0 0 1 7-7z"/></svg></div><div class="m-ind-name">Колики (почечные, желчные)</div></div>
+        <div class="m-ind-sub">Почечная и жёлчная колика · дискинезия желчевыводящих путей</div>
+        <div class="m-ind-explain">Если приступообразно болит в пояснице или боку из-за спазма гладкой мускулатуры внутренних органов — компоненты Спазгана расслабляют этот спазм.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c0-3 2-5 5-5s4 2 6 2 3-2 5-2"/><path d="M3 17c0-3 2-5 5-5s4 2 6 2 3-2 5-2"/></svg></div><div class="m-ind-name">Боль при спазмах ЖКТ</div></div>
+        <div class="m-ind-sub">Кишечная колика · спазм гладкой мускулатуры ЖКТ</div>
+        <div class="m-ind-explain">Помогает, если схваткообразно болит живот из-за спазма кишечника.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 0-8 8M12 8v4l3 2"/></svg></div><div class="m-ind-name">Миалгия (мышечная боль)</div></div>
+        <div class="m-ind-sub">Мышечное перенапряжение · миозит</div>
+        <div class="m-ind-explain">Снимает ноющие ощущения в мышцах при перенапряжении, переохлаждении или воспалении.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13M9 13l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="m-ind-name">Послеоперационная боль</div></div>
+        <div class="m-ind-sub">После операций и медицинских вмешательств</div>
+        <div class="m-ind-explain">Применяется при болевом синдроме, в т.ч. послеоперационном, только по согласованию с лечащим врачом.</div>
+      </div>
+      <div class="m-ind-card">
+        <div class="m-ind-row"><div class="m-ind-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.22 4.22l4.24 4.24m6.36 6.36l4.24 4.24M4.22 19.78l4.24-4.24m6.36-6.36l4.24-4.24"/><rect x="7.76" y="7.76" width="8.49" height="8.49" rx="2" transform="rotate(45 12 12)"/></svg></div><div class="m-ind-name">Боль при травмах и ожогах</div></div>
+        <div class="m-ind-sub">Ушибы · растяжения · термические и химические ожоги</div>
+        <div class="m-ind-explain">Спазган применяют для снятия болевого синдрома при травмах, ушибах и ожогах — как часть симптоматической терапии.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Сравнение -->
+  <section class="m-sec">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Спазган vs обычный анальгетик</span>
+      <h2 class="m-sec-title">Чем Спазган лучше обычного однокомпонентного обезболивающего</h2>
+      <p class="m-sec-sub">При спастической боли важно убрать не только сигнал, но и причину — спазм. Иначе боль возвращается.</p>
+    </div>
+    <div class="m-cmp">
+      <div class="m-cmp-card bad">
+        <div class="m-cmp-badge bad">Обычный анальгетик</div>
+        <div class="m-cmp-body">
+          <h3 class="m-cmp-h">Действует на симптом</h3>
+          <ul class="m-cmp-list">
+            <li>Снижает только болевой сигнал</li>
+            <li>Не снимает спазматические боли и колики</li>
+            <li>При коликах часто малоэффективен</li>
+            <li>Симптомы могут вернуться, пока держится спазм</li>
+          </ul>
+        </div>
+      </div>
+      <div class="m-cmp-card good">
+        <div class="m-cmp-badge good">Спазган®</div>
+        <div class="m-cmp-body">
+          <h3 class="m-cmp-h">Действует на причину</h3>
+          <ul class="m-cmp-list">
+            <li>Устраняет болевой синдром и снижает температуру</li>
+            <li>Сильное спазмолитическое действие расслабляет мышцу</li>
+            <li>Эффективен при спазмах и коликах</li>
+            <li>Убирает источник боли, а не маскирует её</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Как принимать -->
+  <section class="m-sec">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Применение</span>
+      <h2 class="m-sec-title">Как принимать обезболивающее Спазган в таблетках</h2>
+      <p class="m-sec-sub">Взрослым и детям старше 15 лет. Внутрь, после еды, запивая водой.</p>
+    </div>
+    <div class="m-dose">
+      <div class="m-dose-card"><div class="m-dose-val">1–2 <span class="u">таб.</span></div><div class="m-dose-lbl">на один приём</div></div>
+      <div class="m-dose-card"><div class="m-dose-val">2–3 <span class="u">р/день</span></div><div class="m-dose-lbl">кратность приёма</div></div>
+      <div class="m-dose-card"><div class="m-dose-val">6 <span class="u">таб.</span></div><div class="m-dose-lbl">максимум в сутки</div></div>
+      <div class="m-dose-card"><div class="m-dose-val">3 <span class="u">дня</span></div><div class="m-dose-lbl">без консультации врача</div></div>
+    </div>
+    <div class="m-dose-note">Не превышайте рекомендованную дозу. При сохранении боли более 3 дней обратитесь к врачу. Перед применением ознакомьтесь с инструкцией.</div>
+  </section>
+
+  <!-- 5. Доверие -->
+  <section class="m-sec">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Экспертность и доверие</span>
+      <h2 class="m-sec-title">Спазган — обезболивающий препарат с подтверждённой репутацией</h2>
+      <p class="m-sec-sub">Доверие к препарату строится на фактах — вот что важно знать о препарате.</p>
+    </div>
+    <div class="m-trust">
+      <div class="m-trust-card">
+        <div class="m-trust-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8-8 11-4.5-3-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="m-trust-val">В ГРЛС</div>
+        <div class="m-trust-lbl">РУ ЛП-003270, Минздрав России</div>
+      </div>
+      <div class="m-trust-card">
+        <div class="m-trust-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+        <div class="m-trust-val">Без рецепта</div>
+        <div class="m-trust-lbl">безрецептурный отпуск</div>
+      </div>
+      <div class="m-trust-card">
+        <div class="m-trust-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .9-4.5 4.3L18 20l-6-3-6 3 1.5-6.8L3 8.9 9 8z"/></svg></div>
+        <div class="m-trust-val">3 компонента</div>
+        <div class="m-trust-lbl">изученная комбинация действующих веществ</div>
+      </div>
+      <div class="m-trust-card">
+        <div class="m-trust-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v6a4 4 0 0 0 8 0V3"/><path d="M9 17a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="13" r="2"/></svg></div>
+        <div class="m-trust-val">Проверено</div>
+        <div class="m-trust-lbl">медицинским специалистом</div>
+      </div>
+    </div>
+    <div class="m-expert">
+      <div class="m-expert-quote">
+        <p>Спазган — комбинированный препарат: обезболивающий компонент в нём дополнен спазмолитиками, которые действуют на гладкую мускулатуру. Это позволяет справляться не только с болью, но и с её причиной — спазмом, что особенно важно при коликах и спастических состояниях. При сильном, продолжительном или повторяющемся недомогании необходимо обратиться к врачу.</p>
+      </div>
+      <div class="m-expert-author">
+        <div class="m-expert-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div>
+        <div class="m-expert-meta">
+          <div class="m-expert-name">[ФИО специалиста]</div>
+          <div class="m-expert-role">врач-терапевт · [учёная степень, стаж]</div>
+          <a class="m-expert-link">Профиль специалиста →</a>
+        </div>
+        <div class="m-expert-checked">Материал проверил врач · <b>[дата проверки]</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Формы выпуска -->
+  <section class="m-sec band">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Формы выпуска</span>
+      <h2 class="m-sec-title">Три упаковки обезболивающих таблеток под разные задачи</h2>
+      <p class="m-sec-sub">От пробной пачки до семейного запаса.</p>
+    </div>
+    <div class="m-forms">
+      <div class="m-form-card"><div class="m-form-pack">СПАЗГАН</div><div><div class="m-form-count">20 таблеток</div><div class="m-form-desc">На случай эпизодической боли</div></div></div>
+      <div class="m-form-card"><div class="m-form-pack">СПАЗГАН</div><div><div class="m-form-count">40 таблеток</div><div class="m-form-desc">Оптимально по цене за таблетку</div></div></div>
+      <div class="m-form-card"><div class="m-form-pack">СПАЗГАН</div><div><div class="m-form-count">100 таблеток</div><div class="m-form-desc">Большой семейный запас</div></div></div>
+    </div>
+  </section>
+
+  <!-- 7. Линейка -->
+  <section class="m-sec">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Линейка Спазган</span>
+      <h2 class="m-sec-title">Выберите подходящую форму обезболивающего средства</h2>
+      <p class="m-sec-sub">Три продукта под разные сценарии боли.</p>
+    </div>
+    <div class="m-line">
+      <div class="m-line-card current">
+        <div class="m-line-head">
+          <div class="m-line-pill c1">С</div>
+          <div><div class="m-line-cur">● вы здесь</div><div class="m-line-name">Спазган®</div></div>
+        </div>
+        <p class="m-line-desc">Таблетки от болевых ощущений и спазма. Три компонента против спастической боли и колик.</p>
+        <a class="m-line-link">Открыто →</a>
+      </div>
+      <div class="m-line-card">
+        <div class="m-line-head">
+          <div class="m-line-pill c2">Н</div>
+          <div class="m-line-name">Спазган НЕО</div>
+        </div>
+        <p class="m-line-desc">Тройное действие: боль, спазм и воспаление. Усиленная формула с ибупрофеном.</p>
+        <a class="m-line-link">О препарате →</a>
+      </div>
+      <div class="m-line-card">
+        <div class="m-line-head">
+          <div class="m-line-pill c3">Г</div>
+          <div class="m-line-name">Спазгель</div>
+        </div>
+        <p class="m-line-desc">Гель для местного обезболивания при мышечной и суставной боли.</p>
+        <a class="m-line-link">О препарате →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Статьи -->
+  <section class="m-sec band">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Полезная информация</span>
+      <h2 class="m-sec-title">Статьи о боли и спазме</h2>
+      <p class="m-sec-sub">Разбираемся, откуда берётся дискомфорт и как с ним справляться.</p>
+    </div>
+    <div class="m-art">
+      <div class="m-art-card">
+        <div class="m-art-img" data-label="иллюстрация"></div>
+        <div class="m-art-body"><div class="m-art-meta"><span>10 мин чтения</span><span>28.7k просмотров</span></div><h3 class="m-art-title">Где она на самом деле возникает и как от неё избавиться?</h3></div>
+      </div>
+      <div class="m-art-card">
+        <div class="m-art-img" data-label="иллюстрация"></div>
+        <div class="m-art-body"><div class="m-art-meta"><span>10 мин чтения</span><span>7k просмотров</span></div><h3 class="m-art-title">Туториал о менструальной боли</h3></div>
+      </div>
+      <div class="m-art-card">
+        <div class="m-art-img" data-label="иллюстрация"></div>
+        <div class="m-art-body"><div class="m-art-meta"><span>15 мин чтения</span><span>4.8k просмотров</span></div><h3 class="m-art-title">Боль в спине — всегда ли легко решить проблему?</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FAQ -->
+  <section class="m-sec">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Вопрос — ответ</span>
+      <h2 class="m-sec-title">Частые вопросы</h2>
+    </div>
+    <details class="m-faq-item" open>
+      <summary class="m-faq-q">Чем Спазган отличается от обычного обезболивающего?</summary>
+      <div class="m-faq-a">Обычный анальгетик снимает только симптом. Он дополнительно расслабляет спазмированную мускулатуру — поэтому эффективен при коликах и спастической боли, где простое обезболивающее помогает слабо.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Через сколько начинает действовать?</summary>
+      <div class="m-faq-a">Препарат начинает действовать в среднем через 20–40 минут после приёма. Точное время зависит от индивидуальных особенностей.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Какие противопоказания у Спазгана?</summary>
+      <div class="m-faq-a">Основные противопоказания: повышенная чувствительность к компонентам препарата, нарушения кроветворения (в т.ч. в анамнезе), тяжёлые нарушения функции печени и почек, беременность (особенно I триместр и последние 6 недель) и период грудного вскармливания, возраст до 15 лет, закрытоугольная глаукома, аденома предстательной железы с задержкой мочи, тяжёлые нарушения сердечного ритма. Это не полный список — все противопоказания и особые указания приведены в инструкции по применению, ознакомьтесь с ней перед приёмом.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Можно ли принимать в послеоперационном периоде?</summary>
+      <div class="m-faq-a">Спазган применяется при болевом синдроме, в том числе послеоперационном, но только по согласованию с лечащим врачом. Обязательно ознакомьтесь с инструкцией.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Сколько таблеток можно принимать в сутки?</summary>
+      <div class="m-faq-a">Максимальная суточная доза — 6 таблеток. Без консультации врача препарат можно принимать не дольше 3 дней.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">С какого возраста разрешён Спазган?</summary>
+      <div class="m-faq-a">Препарат предназначен для взрослых и детей старше 15 лет. Уточните возрастные ограничения в инструкции.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Можно ли принимать Спазган при головной боли?</summary>
+      <div class="m-faq-a">Да, Спазган применяется при головной боли, в том числе спастического характера, а также при коликах и других видах спазматических ощущений. Как и другие сильнодействующие обезболивающие препараты, при постоянной сильной боли требует консультации врача.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Чем спазмолитик отличается от обезболивающего?</summary>
+      <div class="m-faq-a">Обезболивающее (анальгетик) снимает болевой сигнал, но не действует на его причину. Спазмолитик расслабляет спазмированную гладкую мускулатуру — устраняет саму причину спастической боли. Спазган сочетает оба действия в одной таблетке.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Какие препараты относятся к спазмолитикам?</summary>
+      <div class="m-faq-a">Спазмолитики — препараты, расслабляющие гладкую мускулатуру внутренних органов (миотропные спазмолитики и м-холиноблокаторы). Спазган — комбинированный препарат: в составе есть спазмолитические компоненты — питофенон и фенпивериния бромид — вместе с обезболивающим.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Что помогает при спазме и коликах?</summary>
+      <div class="m-faq-a">При спастической боли и коликах — почечных, желчных, кишечных — эффективны препараты со спазмолитическим действием. Спазган сочетает спазмолитик с обезболивающим компонентом, поэтому снимает и сам спазм, и связанные с ним болезненные ощущения.</div>
+    </details>
+    <details class="m-faq-item">
+      <summary class="m-faq-q">Что помогает от сильной боли?</summary>
+      <div class="m-faq-a">Выбор зависит от источника проблемы. Если дискомфорт сопровождается спазмом — коликой, менструальными спазмами, спастической головной болью — эффективны комбинированные препараты вроде Спазгана, которые снимают и болезненные ощущения, и их причину. При постоянной или очень сильной боли необходима консультация врача.</div>
+    </details>
+  </section>
+
+  <!-- 10. Где купить -->
+  <section class="m-sec band">
+    <div class="m-sec-head">
+      <span class="m-sec-tag">Где купить</span>
+      <h2 class="m-sec-title">Где купить обезболивающие препараты Спазган</h2>
+      <p class="m-sec-sub">Купить без рецепта — онлайн с доставкой или самовывозом из аптеки рядом с домом.</p>
+    </div>
+    <div class="m-shop-map" aria-label="Карта аптек рядом">
+      <div class="m-shop-map__overlay">
+        <div class="m-shop-map__pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div class="m-shop-map__title">Аптеки рядом на карте</div>
+        <div class="m-shop-map__text">Карта покажет ближайшие аптеки, где есть препарат в наличии, и его цену.</div>
+      </div>
+    </div>
+    <div class="m-shop-grid">
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Аптека.ру</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Здравсити</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Eapteka</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Ригла</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Аптека 36,6</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Мегаптека</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Сбер Еаптека</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Будь Здоров</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Планета Здоровья</div><span class="m-shop-btn">Купить</span></a>
+      <a class="m-shop-card" href="#"><div class="m-shop-name">Ютека</div><span class="m-shop-btn">Купить</span></a>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer class="m-footer">
+    <div class="m-footer-brand">СПАЗГАН</div>
+    <p class="m-footer-legal">© ООО «Вокхард БИО (Р)», 2026. Все права защищены.<br>[юридический адрес]</p>
+    <p class="m-footer-legal"><a href="#">[email]</a> · <a href="#">[телефон]</a></p>
+    <div class="m-footer-col">
+      <a class="m-footer-h" href="#">Спазган</a>
+      <div class="m-footer-tag">При боли и спазмах</div>
+      <a href="#">Инструкция</a>
+    </div>
+    <div class="m-footer-col">
+      <a class="m-footer-h" href="#">Спазган НЕО</a>
+      <div class="m-footer-tag">При головной боли</div>
+      <a href="#">При менструальной боли</a>
+      <a href="#">Инструкция</a>
+    </div>
+    <div class="m-footer-col">
+      <a class="m-footer-h" href="#">Спазгель</a>
+      <div class="m-footer-tag">При боли в спине, мышцах и суставах</div>
+      <a href="#">Инструкция</a>
+    </div>
+    <div class="m-footer-col">
+      <a class="m-footer-h" href="#">Полезная информация</a>
+      <a href="#">Все статьи</a>
+    </div>
+    <div class="m-footer-bottom">
+      <a href="#">Где купить</a><a href="#">Сообщить о нежелательном явлении</a><a href="#">Согласие на обработку ПД</a><a href="#">Политика конфиденциальности</a>
+      <div style="margin-top:6px">Реклама. Рекламодатель ООО «Вокхард БИО (Р)».</div>
+    </div>
+  </footer>
+
+  <!-- Медицинская предосторожность -->
+  <div class="m-big-disclaimer">
+    <p>Имеются противопоказания, необходимо проконсультироваться со специалистом</p>
+  </div>
+
+</div>
+
+</body>
+</html>
